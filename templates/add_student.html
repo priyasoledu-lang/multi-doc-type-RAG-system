@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ {% extends "index.html"%}
+{% block content %}
+<div class="card shadow mb-4">
+
+    <!-- Card Header -->
+    <div class="card-header py-3 d-flex justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">
+            Student Details
+        </h6>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Photo</th>
+                        <th>Course</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody class="text-center">
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>
+                            <span class="badge badge-info">
+                                {{ student.designation }}
+                            </span>
+                        </td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.mobile }}</td>
+
+                        <td>
+                            <img src="{{ url_for('static', filename='uploads/' + student['photo'] or 'default.png') }}"
+                                 class="img-thumbnail"
+                                 style="width:60px; height:60px; object-fit:cover;">
+                        </td>
+                        
+                         <td>{{ student['course'] }}</td>
+                        
+                        <td>
+
+                            <!-- Edit Button -->
+                            <a href="{{ url_for('edit', id=student.id) }}"
+                               class="btn btn-warning btn-sm mr-1">
+                                <i class="fas fa-edit">Edit</i>
+                            </a>
+
+                            <!-- Delete Button -->
+                            <a href="{{ url_for('delete', id=student.id) }}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Are you sure you want to delete?')">
+                                <i class="fas fa-trash">Delete</i>
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    <!-- No Data Message -->
+                    {% if students|length == 0 %}
+                    <tr>
+                        <td colspan="6">No students found</td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %} 
+</body>
+</html>
