@@ -354,10 +354,18 @@ def sidebar():
                 ]
 
             except Exception as e:
-                logging.exception("Indexing failed: %s", e)
-                st.sidebar.error(f"Indexing failed: {e}")
-                st.session_state["status"] = "error"
-        st.rerun() # Rerun to update status display
+             logging.exception("Indexing failed")
+
+             st.sidebar.error(f"Indexing failed: {type(e).__name__}: {e}")
+
+             with st.sidebar.expander("View error details"):
+             st.sidebar.code(
+            logging.Formatter().formatException(
+                __import__("sys").exc_info()
+            )
+        )
+
+    st.session_state["status"] = "error"
 
 
     st.sidebar.markdown("---")
