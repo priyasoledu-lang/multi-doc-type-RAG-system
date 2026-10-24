@@ -5,4 +5,7 @@ generation:
   # Strategy threshold for deciding between Stuff vs Map-Reduce
   # Increased to 2000 to allow more documents to use faster Stuff strategy
   # Map-Reduce is slower (multiple LLM calls) so we prefer Stuff when possible
-  stuff_context_token_limit: 1000
+stuff_context_token_limit: 1000
+
+generation:
+  llm_model: qwen2.5:1.5b
