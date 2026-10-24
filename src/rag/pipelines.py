@@ -158,7 +158,7 @@ class RAGPipeline:
                 }
 
             gen_cfg = self.config.get("generation", {})
-            token_limit = gen_cfg.get("stuff_context_token_limit")
+            token_limit = gen_cfg.get("stuff_context_token_limit") or 1000
             
             total_tokens = sum(num_tokens_from_string(doc.page_content) for doc in documents)
             logging.info("Total context tokens: %d (limit: %d)", total_tokens, token_limit)
