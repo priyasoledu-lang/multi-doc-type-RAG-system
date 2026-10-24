@@ -1,11 +1,11 @@
-generation:
-  llm_model: llama3.2
-  temperature: 0.2
-  max_output_tokens: 512
+
   # Strategy threshold for deciding between Stuff vs Map-Reduce
   # Increased to 2000 to allow more documents to use faster Stuff strategy
   # Map-Reduce is slower (multiple LLM calls) so we prefer Stuff when possible
-stuff_context_token_limit: 1000
 
 generation:
-  llm_model: qwen2.5:1.5b
+  llm_model: gemma4:31b-cloud
+  temperature: 0.2
+  max_output_tokens: 512
+
+stuff_context_token_limit: 1000
