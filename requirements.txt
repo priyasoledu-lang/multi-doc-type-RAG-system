@@ -18,6 +18,5 @@ tiktoken
 from_root
 sentence-transformers
 python-multipart
-langchain-openai
-openai
+
 -e .
