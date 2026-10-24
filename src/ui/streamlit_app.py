@@ -353,14 +353,14 @@ def sidebar():
                     {"name": d["name"], "path": d["path"]} for d in docs
                 ]
 
-            except Exception as e:
-             logging.exception("Indexing failed")
+              except Exception as e:
+                 logging.exception("Indexing failed")
 
-             st.sidebar.error(f"Indexing failed: {type(e).__name__}: {e}")
+                 st.sidebar.error(f"Indexing failed: {type(e).__name__}: {e}")
 
-             with st.sidebar.expander("View error details"):
-             st.sidebar.code(
-            logging.Formatter().formatException(
+                 with st.sidebar.expander("View error details"):
+                 st.sidebar.code(
+                 logging.Formatter().formatException(
                 __import__("sys").exc_info()
             )
         )
