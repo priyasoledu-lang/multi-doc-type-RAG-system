@@ -45,8 +45,10 @@ class RAGPipeline:
         max_tokens = gen_cfg.get("max_output_tokens")
         if max_tokens:
             llm_kwargs["num_predict"] = max_tokens  # Ollama uses num_predict for max tokens
-        self.llm = ChatOllama(**llm_kwargs)
-
+        self.llm = ChatOllama(
+           **llm_kwargs,
+           num_ctx=2048,
+)
         retr_cfg = self.config.get("retrieval", {})
         self.reranker = CrossEncoderReranker(
             model_name=retr_cfg.get("reranker_model")

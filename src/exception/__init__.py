@@ -1,28 +1,23 @@
 import sys
 import logging
 
-def error_message_detail(error: Exception, error_detail: sys) -> str:
-    """
-    Extracts detailed error information including file name, line number, and the error message.
 
-    :param error: The exception that occurred.
-    :param error_detail: The sys module to access traceback details.
-    :return: A formatted error message string.
-    """
-    # Extract traceback details (exception information)
+import sys
+
+
+def error_message_detail(error, error_detail: sys):
     _, _, exc_tb = error_detail.exc_info()
 
-    # Get the file name where the exception occurred
-    file_name = exc_tb.tb_frame.f_code.co_filename
+    if exc_tb is None:
+        return str(error)
 
-    # Create a formatted error message string with file name, line number, and the actual error
+    file_name = exc_tb.tb_frame.f_code.co_filename
     line_number = exc_tb.tb_lineno
-    error_message = f"Error occurred in python script: [{file_name}] at line number [{line_number}]: {str(error)}"
-    
-    # Log the error for better tracking
-    logging.error(error_message)
-    
-    return error_message
+
+    return (
+        f"Error occurred in python script: [{file_name}] "
+        f"at line number [{line_number}]: {str(error)}"
+    )
 
 class MyException(Exception):
     """
