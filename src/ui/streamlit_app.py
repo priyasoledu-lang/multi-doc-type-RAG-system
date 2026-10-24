@@ -76,8 +76,8 @@ except ImportError:
 
 # --- Configuration and Initial Setup ---
 st.set_page_config(
-    page_title="Q&A RAG App by Jeet Majumder",
-    page_icon="static/images/favicon.png",
+    page_title=Multi-DOC Project",
+    # page_icon="static/images/favicon.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
